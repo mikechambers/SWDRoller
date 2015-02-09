@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+  <!-- Bootstrap -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      margin:0;
+      padding:0;
+      height:100%;
+    }
+
+    #mainCol {
+      width: 300px;
+      height: 100%;
+    }
+    #resultsPanel {
+      width:300px;
+      background-color: #f5f8fb;
+    }
+
+    #tab-panel {
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mainCol">
+    <h2>SWD Roller</h2>
+
+    <div role="tabpanel">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#dice" aria-controls="dice" role="tab" data-toggle="tab">Dice</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">D100</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Force</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content" id="tab-panel">
+        <div role="tabpanel" class="tab-pane active container-fluid" id="dice">
+          <div class="row">
+            <div class="col-sm-4"><img src="images/ability.png"></div>
+            <div class="col-sm-4"><img src="images/proficiency.png"></div>
+            <div class="col-sm-4"><img src="images/boost.png"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><img src="images/difficulty.png"></div>
+            <div class="col-sm-4"><img src="images/challenge.png"></div>
+            <div class="col-sm-4"><img src="images/setback.png"></div>
+          </div>
+          <hr>
+          <div class="row">
+            <button type="button" class="btn btn-default col-sm-6">Clear</button>
+            <button type="button" class="btn btn-default col-sm-6">Roll</button>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">D100</div>
+        <div role="tabpanel" class="tab-pane" id="messages">Force</div>
+      </div>
+    </div>
+    <div id="resultsPanel">
+      a
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+  </html>
