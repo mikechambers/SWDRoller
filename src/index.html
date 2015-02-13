@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>TITLE</title>
+    <!-- Bootstrap -->
+    <link href="semantic/semantic.css" rel="stylesheet">
+    
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script src="semantic/semantic.js"></script>
+    
+    
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #main-col {
+            width: 300px;
+            height:100vh;
+            background-color: #ff0000;
+            
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #controls {
+            height: 200px;
+            background-color: #00ff00;
+        }
+        
+        .control-element {
+            height: inherit;
+        }
+        
+        #result-cards {
+            width: 100%;
+            background-color: #0000FF;
+            flex-grow: 1;
+        }
+        
+        #footer {
+            width: 100%;
+            background-color: #ffff00;
+            height: 40px;
+        }
+    </style>
+    
+    <script>
+        $(document).ready(function(){
+            $('.menu .item').tab();
+        })
+        
+    </script>
+    
+</head>
+    
+<body>
+
+    <div id="main-col">
+        <div id="controls">
+
+            <div class="ui top attached tabular menu">
+                <a class="active item" data-tab="first">Dice</a>
+                <a class="item" data-tab="second">Crits</a>
+            </div>
+            <div class="ui bottom attached active tab segment control-element" data-tab="first">
+                Dice
+            </div>
+            <div class="ui bottom attached tab segment control-element" data-tab="second">
+                Crit
+            </div> 
+            
+        </div>
+        <div id="result-cards">
+        </div>
+        <div id="footer">
+        </div>
+        
+    </div>
+    
+</body>
+</html>
