@@ -30,8 +30,8 @@
         }
         
         #controls {
-            height: 350px;
-            min-height: 350px;
+            height: 345px;
+            min-height: inherit;
         }
 
         
@@ -53,9 +53,11 @@
 <body>
 
     <div id="main-col">
+        <!--
         <div id="title">
             <h3>SWRPG Dice Roller</h3>
         </div>
+        -->
         <div id="controls">
 
             <div class="ui top attached tabular menu">
@@ -83,8 +85,9 @@
                     </div>
                     <div class="column">
                         <a href="#" class="ui image"><img src="images/setback.png" /></a>
-                    </div>
+                    </div>             
                 </div>
+                
                 <div id="dice-pool" class="ui attached segment">
                     <!--
                     <img src="images/tokens/ability-white.gif" />
@@ -94,12 +97,14 @@
                     <img src="images/tokens/difficulty-white.gif" />
 -->
                 </div>
-                <div class="ui bottom attached segment two column grid">
+             
+                <div class="ui bottom attached segment grid">
                     <div class="center aligned column">
-                        <div class="ui black basic button">Reset</div>
+    
+                    <div class="ui action input">
+                      <input type="text" placeholder="Label...">
+                      <div class="ui button">Roll</div>
                     </div>
-                    <div class="center aligned column">
-                        <div class="ui black basic button">Roll</div>
                     </div>
                 </div>
                 
@@ -113,7 +118,7 @@
             <div class="ui cards one column grid">
             
                 <div class="column">
-          
+
                     <div class="ui fluid card">
                         <div class="content">
                             <div class="header"><i class="user icon"></i>Ryan S<i class="remove icon link right floated"></i></div>
@@ -218,17 +223,19 @@
                         </div>
                     </div> 
 
- 
 
                 </div>
 
             </div>
         </div>
+        
+        <!--
         <div id="footer" class="ui segment one column grid">
             <div class="right aligned column">
                 <div class="ui black basic button">Clear</div>
             </div>
         </div>
+        -->
         
     </div>
     <script src="js/libs/jquery-2.1.3.js"></script>
