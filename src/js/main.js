@@ -14,6 +14,15 @@
         SETBACK: 5
     };
     
+    var DIE_NAMES = {
+        0: "ABILITY",
+        1: "PROFICIENCY",
+        2: "BOOST",
+        3: "DIFFICULTY",
+        4: "CHALLENGE",
+        5: "SETBACK"
+    };
+    
     var RESULT = {
         SUCCESS: "success",
         FAILURE: "failure",
@@ -107,11 +116,39 @@
         $(".menu .item").tab();
     });
     
+    var renderPool = function () {
+    
+        $("#dice-pool").empty();
+        
+        var tmp = "";
+        
+        var i;
+        for (i = 0; i < pool.length; i++) {
+            //<img class="dice-image" data-type="0" height="48" width="48" src="images/ability.png" />
+            tmp += '<img class="dice-image" data-type=' + pool[i] + ' height="24" width="24" src="images/' + DIE_NAMES[pool[i]] + '.png" />';
+            
+        }
+        
+        $("#dice-pool").append(tmp);
+    };
+    
+    
+    var clearPool = function () {
+        pool.length = 0;
+        renderPool();
+    };
+    
+    $("#clear-pool-icon").on("click", function (event) {
+        clearPool();
+    });
+    
     $(".dice-image").on("click", function (event) {
         
         var type = parseInt(event.target.dataset.type, 10);
         pool.push(type);
         pool.sort();
+        
+        renderPool();
         console.log(pool);
     });
     
@@ -128,9 +165,7 @@
             }
         }
         
-        console.log(out);
-        
-        pool.length = 0;
+        clearPool();
     });
 
 }());

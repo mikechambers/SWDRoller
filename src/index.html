@@ -34,6 +34,9 @@
             min-height: inherit;
         }
 
+        #dice-pool-segment {
+            min-height: 57px;
+        }
         
         #result-cards {
             width: 100%;
@@ -80,26 +83,22 @@
                         <img class="dice-image" data-type="3" height="48" width="48" src="images/difficulty.png" />
                         <img class="dice-image" data-type="4" height="48" width="48" src="images/challenge.png" />
                         <img class="dice-image" data-type="5" height="48" width="48" src="images/setback.png" />
-                    </div>        
+                    </div>
                 </div>
                 
-                <div id="dice-pool" class="ui attached segment">
-                    <!--
-                    <img src="images/tokens/ability-white.gif" />
-                    <img src="images/tokens/ability-white.gif" />
-                    <img src="images/tokens/ability-white.gif" />
-                    <img src="images/tokens/difficulty-white.gif" />
-                    <img src="images/tokens/difficulty-white.gif" />
--->
+                <div id="dice-pool-segment" class="ui attached segment">
+                    <div class="ui grid">
+                        <div id="dice-pool" class="fourteen wide column"></div>
+                        <div class="two wide column"><i id="clear-pool-icon" class="remove circle icon link icon"></i></div>
+                    </div>
                 </div>
              
                 <div class="ui bottom attached segment grid">
                     <div class="center aligned column">
-    
-                    <div class="ui action input">
-                      <input type="text" placeholder="Label...">
-                      <div class="ui button" id="roll-button">Roll</div>
-                    </div>
+                        <div class="ui action input">
+                          <input type="text" placeholder="Label...">
+                          <div class="ui button" id="roll-button">Roll</div>
+                        </div>
                     </div>
                 </div>
                 
