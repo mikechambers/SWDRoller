@@ -217,6 +217,8 @@
         }
         
         console.log(out);
+        
+        $("#label-input").val("");
         clearPool();
     });
 
