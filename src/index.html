@@ -7,10 +7,6 @@
     <!-- Bootstrap -->
     <link href="semantic/semantic.css" rel="stylesheet">
     
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-  <script src="semantic/semantic.js"></script>
-    
-    
     <style>
         html,
         body {
@@ -24,9 +20,15 @@
             height:100vh;
             display: flex;
             flex-direction:column;
+            background-color: #FFFFFF;
         }
         
-
+        #title {
+            width: 100%;
+            text-align: center;
+            min-height: 62px;
+        }
+        
         #controls {
             height: 350px;
             min-height: 350px;
@@ -38,6 +40,7 @@
             flex:1;
             overflow-y:scroll;
             overflow-x: hidden;
+            background-color: rgb(253, 253, 253);
         }
         
         #footer {
@@ -45,44 +48,41 @@
         }
     </style>
     
-    <script>
-        $(document).ready(function(){
-            $('.menu .item').tab();
-        })
-        
-    </script>
-    
 </head>
     
 <body>
 
     <div id="main-col">
+        <div id="title">
+            <h3>SWRPG Dice Roller</h3>
+        </div>
         <div id="controls">
 
             <div class="ui top attached tabular menu">
-                <a class="active item" data-tab="first">Dice</a>
-                <!--<a class="item" data-tab="second">Crits</a>-->
+                <a class="active item" data-tab="first">Force Dice</a>
+                <a class="item" data-tab="second">Critical</a>
+                <a class="item" data-tab="third">Destiny</a>
             </div>
             <div class="ui bottom attached active tab segment" data-tab="first">
                 
                 <div class="ui top attached segment three column grid">
                     <div class="column">
-                        <img src="images/ability.png" />
+                        <a href="#" class="ui image"><img src="images/ability.png" /></a>
                     </div>
                     <div class="column">
-                        <img src="images/proficiency.png" />
+                        <a href="#" class="ui image"><img src="images/proficiency.png" /></a>
                     </div>
                     <div class="column">
-                        <img src="images/boost.png" />
+                        <a href="#" class="ui image"><img src="images/boost.png" /></a>
                     </div>
                     <div class="column">
-                        <img src="images/difficulty.png" />
+                        <a href="#" class="ui image"><img src="images/difficulty.png" /></a>
                     </div>
                     <div class="column">
-                        <img src="images/challenge.png" />
+                        <a href="#" class="ui image"><img src="images/challenge.png" /></a>
                     </div>
                     <div class="column">
-                        <img src="images/setback.png" />
+                        <a href="#" class="ui image"><img src="images/setback.png" /></a>
                     </div>
                 </div>
                 <div id="dice-pool" class="ui attached segment">
@@ -113,28 +113,68 @@
             <div class="ui cards one column grid">
             
                 <div class="column">
-
+          
                     <div class="ui fluid card">
                         <div class="content">
-                            <div class="header">Ryan S</div>
+                            <div class="header"><i class="user icon"></i>Ryan S<i class="remove icon link right floated"></i></div>
                             <div class="meta">
                                 <a class="group">Initiative Check</a>
                             </div>
                             <div class="description">
-                                Elliot Fu is a film-maker from New York.
+                                Raw Results
+                            </div>
+                           <div class="description">
+                                Calculated Results
                             </div>
                         </div>
                         <div class="extra content">
                             <a class="right floated created">
-                                Joined in 2011
-                            </a>
-                            <a class="friends">
-                                <i class="user icon"></i>
-                                22 Friends
+                                <span class="time">8:35 PM</span>
                             </a>
                         </div>
                     </div>                
 
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Initiative Check<i class="remove icon link right floated"></i></div>
+                            <div class="description">
+                                Raw Results
+                            </div>
+                           <div class="description">
+                                Calculated Results
+                            </div>
+                        </div>
+                        <div class="extra content">
+                              <a class="right floated created">
+                                8:35 PM
+                              </a>
+                              <a class="friends">
+                                <i class="user icon"></i>
+                                Mike C
+                              </a>
+                        </div>
+                    </div>                     
+                    
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header"><i class="user icon"></i>Ryan S<i class="remove icon link right floated"></i></div>
+                            <div class="description">
+                                Raw Results
+                            </div>
+                           <div class="description">
+                                Calculated Results
+                            </div>
+                        </div>
+                        <div class="extra content">
+                              <a class="friends">
+                                Initiative Check
+                              </a>
+                            <a class="right floated created">
+                                <span class="time">8:35 PM</span>
+                            </a>
+                        </div>
+                    </div>                      
+                    
                     <div class="ui fluid card">
                         <div class="content">
                             <div class="header">Ryan S</div>
@@ -158,7 +198,8 @@
 
                     <div class="ui fluid card">
                         <div class="content">
-                            <div class="header">Ryan S</div>
+                            <div class="header">Ryan S
+                            </div>
                             <div class="meta">
                                 <a class="group">Initiative Check</a>
                             </div>
@@ -190,6 +231,8 @@
         </div>
         
     </div>
-    
+    <script src="js/libs/jquery-2.1.3.js"></script>
+    <script src="semantic/semantic.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
