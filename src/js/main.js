@@ -1,5 +1,5 @@
 /*jslint vars: true, nomen: true, plusplus: true, continue:true, forin:true */
-/*global $, console */
+/*global $, console, renderPool */
 
 (function () {
     
@@ -14,15 +14,6 @@
         SETBACK: 5
     };
     
-    var DIE_NAMES = {
-        0: "ABILITY",
-        1: "PROFICIENCY",
-        2: "BOOST",
-        3: "DIFFICULTY",
-        4: "CHALLENGE",
-        5: "SETBACK"
-    };
-    
     var RESULT = {
         SUCCESS: "success",
         FAILURE: "failure",
@@ -32,79 +23,110 @@
         DESPAIR: "despair",
         BLANK: "blank"
     };
-    
-    var RESULT_SET = [];
-    RESULT_SET[DIE_TYPE.ABILITY] = [
-        [RESULT.SUCCESS],
-        [RESULT.ADVANTAGE],
-        [RESULT.ADVANTAGE, RESULT.SUCCESS],
-        [RESULT.SUCCESS, RESULT.SUCCESS],
-        [RESULT.ADVANTAGE],
-        [RESULT.SUCCESS],
-        [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
-        [RESULT.BLANK]
-    ];
 
-    RESULT_SET[DIE_TYPE.PROFICIENCY] = [
-        [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
-        [RESULT.ADVANTAGE],
-        [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
-        [RESULT.TRIUMP],
-        [RESULT.SUCCESS],
-        [RESULT.SUCCESS, RESULT.ADVANTAGE],
-        [RESULT.SUCCESS],
-        [RESULT.SUCCESS, RESULT.ADVANTAGE],
-        [RESULT.SUCCESS, RESULT.SUCCESS],
-        [RESULT.SUCCESS, RESULT.ADVANTAGE],
-        [RESULT.SUCCESS, RESULT.SUCCESS],
-        [RESULT.BLANK]
-    ];
+    /******** Die Definitions ***********/
+    var Dice = [];
+        
+    //Ability
+    Dice[DIE_TYPE.ABILITY] =  {
+        name: "ability",
+        img_path: "images/ability.png",
+        resultSet: [
+            [RESULT.SUCCESS],
+            [RESULT.ADVANTAGE],
+            [RESULT.ADVANTAGE, RESULT.SUCCESS],
+            [RESULT.SUCCESS, RESULT.SUCCESS],
+            [RESULT.ADVANTAGE],
+            [RESULT.SUCCESS],
+            [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
+            [RESULT.BLANK]
+        ]
+    };
 
+    //Proficiency
+    Dice[DIE_TYPE.PROFICIENCY] = {
+        name: "proficiency",
+        img_path: "images/proficiency.png",
+        resultSet: [
+            [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
+            [RESULT.ADVANTAGE],
+            [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
+            [RESULT.TRIUMP],
+            [RESULT.SUCCESS],
+            [RESULT.SUCCESS, RESULT.ADVANTAGE],
+            [RESULT.SUCCESS],
+            [RESULT.SUCCESS, RESULT.ADVANTAGE],
+            [RESULT.SUCCESS, RESULT.SUCCESS],
+            [RESULT.SUCCESS, RESULT.ADVANTAGE],
+            [RESULT.SUCCESS, RESULT.SUCCESS],
+            [RESULT.BLANK]
+        ]
+    };
 
-    RESULT_SET[DIE_TYPE.BOOST] = [
-        [RESULT.ADVANTAGE],
-        [RESULT.SUCCESS, RESULT.ADVANTAGE],
-        [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
-        [RESULT.SUCCESS],
-        [RESULT.BLANK],
-        [RESULT.BLANK]
-    ];
+    //Boost
+    Dice[DIE_TYPE.BOOST] = {
+        name: "boost",
+        img_path: "images/boost.png",
+        resultSet: [
+            [RESULT.ADVANTAGE],
+            [RESULT.SUCCESS, RESULT.ADVANTAGE],
+            [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
+            [RESULT.SUCCESS],
+            [RESULT.BLANK],
+            [RESULT.BLANK]
+        ]
+    };
 
-    RESULT_SET[DIE_TYPE.DIFFICULTY] = [
-        [RESULT.THREAT],
-        [RESULT.FAILURE],
-        [RESULT.THREAT, RESULT.FAILURE],
-        [RESULT.THREAT],
-        [RESULT.BLANK],
-        [RESULT.THREAT, RESULT.THREAT],
-        [RESULT.FAILURE, RESULT.FAILURE],
-        [RESULT.THREAT]
-    ];
+    //Difficulty
+    Dice[DIE_TYPE.DIFFICULTY] = {
+        name: "difficulty",
+        img_path: "images/difficulty.png",
+        resultSet: [
+            [RESULT.THREAT],
+            [RESULT.FAILURE],
+            [RESULT.THREAT, RESULT.FAILURE],
+            [RESULT.THREAT],
+            [RESULT.BLANK],
+            [RESULT.THREAT, RESULT.THREAT],
+            [RESULT.FAILURE, RESULT.FAILURE],
+            [RESULT.THREAT]
+        ]
+    };
 
-    RESULT_SET[DIE_TYPE.CHALLENGE] = [
-        [RESULT.THREAT, RESULT.THREAT],
-        [RESULT.THREAT],
-        [RESULT.THREAT, RESULT.THREAT],
-        [RESULT.THREAT],
-        [RESULT.THREAT, RESULT.FAILURE],
-        [RESULT.FAILURE],
-        [RESULT.THREAT, RESULT.FAILURE],
-        [RESULT.FAILURE],
-        [RESULT.FAILURE, RESULT.FAILURE],
-        [RESULT.DESPAIR],
-        [RESULT.FAILURE, RESULT.FAILURE],
-        [RESULT.BLANK]
-    ];
+    //Challenge
+    Dice[DIE_TYPE.CHALLENGE] = {
+        name: "challenge",
+        img_path: "images/challenge.png",
+        resultSet: [
+            [RESULT.THREAT, RESULT.THREAT],
+            [RESULT.THREAT],
+            [RESULT.THREAT, RESULT.THREAT],
+            [RESULT.THREAT],
+            [RESULT.THREAT, RESULT.FAILURE],
+            [RESULT.FAILURE],
+            [RESULT.THREAT, RESULT.FAILURE],
+            [RESULT.FAILURE],
+            [RESULT.FAILURE, RESULT.FAILURE],
+            [RESULT.DESPAIR],
+            [RESULT.FAILURE, RESULT.FAILURE],
+            [RESULT.BLANK]
+        ]
+    };
 
-    RESULT_SET[DIE_TYPE.SETBACK] = [
-        [RESULT.FAILURE],
-        [RESULT.FAILURE],
-        [RESULT.THREAT],
-        [RESULT.THREAT],
-        [RESULT.BLANK],
-        [RESULT.BLANK]
-    ];
-
+    //Challenge
+    Dice[DIE_TYPE.SETBACK] = {
+        name: "setback",
+        img_path: "images/setback.png",
+        resultSet: [
+            [RESULT.FAILURE],
+            [RESULT.FAILURE],
+            [RESULT.THREAT],
+            [RESULT.THREAT],
+            [RESULT.BLANK],
+            [RESULT.BLANK]
+        ]
+    };
+    /******** End Die Definitions ***********/
     
     var _roll = function (resultSet) {
         return resultSet[Math.floor(Math.random() * resultSet.length)];
@@ -116,20 +138,46 @@
         $(".menu .item").tab();
     });
     
-    var renderPool = function () {
+    var renderPool;
+    var _poolDiceClickHandler = function (event) {
+        
+        console.log("click");
+        var type = parseInt(event.target.dataset.type, 10);
+        
+        var found = false;
+        var i;
+        for (i = 0; i < pool.length; i++) {
+            var tmp = pool[i];
+            
+            if (tmp === type) {
+                pool.splice(i, 1);
+                found = true;
+                break;
+            }
+        }
+        
+        if (found) {
+            renderPool();
+        }
+    };
+    
+    renderPool = function () {
     
         $("#dice-pool").empty();
         
         var tmp = "";
         
+        var dieType;
         var i;
         for (i = 0; i < pool.length; i++) {
-            //<img class="dice-image" data-type="0" height="48" width="48" src="images/ability.png" />
-            tmp += '<img class="dice-image" data-type=' + pool[i] + ' height="24" width="24" src="images/' + DIE_NAMES[pool[i]] + '.png" />';
+            
+            dieType = pool[i];
+            tmp += '<img class="mini-dice-image clickable pool-dice" data-type=' + dieType + ' height="18" width="18" src="images/' + Dice[dieType].name + '.png" />';
             
         }
         
         $("#dice-pool").append(tmp);
+        $(".pool-dice").on("click", _poolDiceClickHandler);
     };
     
     
@@ -145,6 +193,9 @@
     $(".dice-image").on("click", function (event) {
         
         var type = parseInt(event.target.dataset.type, 10);
+        
+        //todo: check valid
+        
         pool.push(type);
         pool.sort();
         
@@ -157,7 +208,7 @@
         var out = [];
         var i, k;
         for (i = 0; i < pool.length; i++) {
-            var resultSet = RESULT_SET[pool[i]];
+            var resultSet = Dice[pool[i]].resultSet;
             var res = _roll(resultSet);
             
             for (k = 0; k < res.length; k++) {
@@ -165,6 +216,7 @@
             }
         }
         
+        console.log(out);
         clearPool();
     });
 
