@@ -16,31 +16,32 @@
         body {
             margin: 0;
             padding: 0;
+            
         }
         
         #main-col {
             width: 300px;
             height:100vh;
-            
             display: flex;
-            flex-direction: column;
+            flex-direction:column;
         }
         
+
         #controls {
+            height: 350px;
+            min-height: 350px;
         }
-        
-        .control-element {
-            height: inherit;
-        }
+
         
         #result-cards {
             width: 100%;
-            flex-grow: 1;
+            flex:1;
+            overflow-y:scroll;
+            overflow-x: hidden;
         }
         
         #footer {
             width: 100%;
-            height: 40px;
         }
     </style>
     
@@ -56,15 +57,15 @@
 <body>
 
     <div id="main-col">
-        <div id="controls" class="ui segment">
+        <div id="controls">
 
             <div class="ui top attached tabular menu">
                 <a class="active item" data-tab="first">Dice</a>
-                <a class="item" data-tab="second">Crits</a>
+                <!--<a class="item" data-tab="second">Crits</a>-->
             </div>
-            <div class="ui bottom attached active tab segment control-element" data-tab="first">
+            <div class="ui bottom attached active tab segment" data-tab="first">
                 
-                <div class="ui three column grid">
+                <div class="ui top attached segment three column grid">
                     <div class="column">
                         <img src="images/ability.png" />
                     </div>
@@ -84,8 +85,16 @@
                         <img src="images/setback.png" />
                     </div>
                 </div>
-                <div id="dice-pool" class="ui">pool</div>
-                <div class="ui two column grid">
+                <div id="dice-pool" class="ui attached segment">
+                    <!--
+                    <img src="images/tokens/ability-white.gif" />
+                    <img src="images/tokens/ability-white.gif" />
+                    <img src="images/tokens/ability-white.gif" />
+                    <img src="images/tokens/difficulty-white.gif" />
+                    <img src="images/tokens/difficulty-white.gif" />
+-->
+                </div>
+                <div class="ui bottom attached segment two column grid">
                     <div class="center aligned column">
                         <div class="ui black basic button">Reset</div>
                     </div>
@@ -95,14 +104,89 @@
                 </div>
                 
             </div>
-            <div class="ui bottom attached tab segment control-element" data-tab="second">
-                Crit
-            </div> 
             
         </div>
+        
+
         <div id="result-cards">
+            
+            <div class="ui cards one column grid">
+            
+                <div class="column">
+
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Ryan S</div>
+                            <div class="meta">
+                                <a class="group">Initiative Check</a>
+                            </div>
+                            <div class="description">
+                                Elliot Fu is a film-maker from New York.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a class="right floated created">
+                                Joined in 2011
+                            </a>
+                            <a class="friends">
+                                <i class="user icon"></i>
+                                22 Friends
+                            </a>
+                        </div>
+                    </div>                
+
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Ryan S</div>
+                            <div class="meta">
+                                <a class="group">Initiative Check</a>
+                            </div>
+                            <div class="description">
+                                Elliot Fu is a film-maker from New York.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a class="right floated created">
+                                Joined in 2011
+                            </a>
+                            <a class="friends">
+                                <i class="user icon"></i>
+                                22 Friends
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Ryan S</div>
+                            <div class="meta">
+                                <a class="group">Initiative Check</a>
+                            </div>
+                            <div class="description">
+                                Elliot Fu is a film-maker from New York.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a class="right floated created">
+                                Joined in 2011
+                            </a>
+                            <a class="friends">
+                                <i class="user icon"></i>
+                                22 Friends
+                            </a>
+                        </div>
+                    </div> 
+
+ 
+
+                </div>
+
+            </div>
         </div>
-        <div id="footer" class="ui segment">
+        <div id="footer" class="ui segment one column grid">
+            <div class="right aligned column">
+                <div class="ui black basic button">Clear</div>
+            </div>
         </div>
         
     </div>
