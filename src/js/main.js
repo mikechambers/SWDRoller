@@ -1,5 +1,5 @@
 /*jslint vars: true, nomen: true, plusplus: true, continue:true, forin:true */
-/*global $, console, renderPool */
+/*global $, console, renderPool, Handlebars */
 
 (function () {
     
@@ -128,6 +128,8 @@
     };
     /******** End Die Definitions ***********/
     
+    var miniDiceTemplate;
+    
     var _roll = function (resultSet) {
         return resultSet[Math.floor(Math.random() * resultSet.length)];
     };
@@ -147,18 +149,19 @@
         
         $("#roll-button, #clear-pool-icon").removeClass("disabled");
         
-        var tmp = "";
+        var tmp = [];
         
         var dieType;
         var i;
         for (i = 0; i < pool.length; i++) {
             
             dieType = pool[i];
-            tmp += '<img class="mini-dice-image clickable pool-dice" data-type=' + dieType + ' height="18" width="18" src="images/' + Dice[dieType].name + '.png" />';
-            
+            tmp.push({dieType: dieType, imageName: Dice[dieType].name});
         }
         
-        $("#dice-pool").append(tmp);
+        var html = miniDiceTemplate({items: tmp});
+        
+        $("#dice-pool").append(html);
         $(".pool-dice").on("click", _poolDiceClickHandler);
     };
     
@@ -188,9 +191,18 @@
             renderPool();
         }
     };
+
+    var clearPool = function () {
+        pool.length = 0;
+        renderPool();
+    };
+    
     
     $(document).ready(function () {
         $(".menu .item").tab();
+        
+        var source = $("#mini-dice-template").html();
+        miniDiceTemplate = Handlebars.compile(source);
     });
     
     
@@ -200,11 +212,6 @@
         removeFromPool(type);
     };
     
-    var clearPool = function () {
-        pool.length = 0;
-        renderPool();
-    };
-    
     $("#clear-pool-icon").on("click", function (event) {
         clearPool();
     });
@@ -212,11 +219,6 @@
     $(".dice-image").on("click", function (event) {
         
         var type = parseInt(event.target.dataset.type, 10);
-        
-        //todo: check valid
-        
-        //pool.push(type);
-        //pool.sort();
         
         addToPool(type);
     });
