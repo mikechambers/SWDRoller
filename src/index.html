@@ -23,11 +23,13 @@
             background-color: #FFFFFF;
         }
         
+        /*
         #title {
             width: 100%;
             text-align: center;
             min-height: 62px;
         }
+        */
         
         #controls {
             height: 288;
@@ -61,6 +63,63 @@
         .mini-dice-image {
             padding: 1px;
         }
+
+        .ability {
+            background: url("images/ability.png") no-repeat 0px 0px;
+        }
+        
+        .proficiency {
+            background: url("images/proficiency.png") no-repeat 0px 0px;
+        }
+        
+        .difficulty {
+            background: url("images/difficulty.png") no-repeat 0px 0px;
+        }
+        
+        .challenge {
+            background: url("images/challenge.png") no-repeat 0px 0px;
+        }
+        
+        .setback {
+            background: url("images/setback.png") no-repeat 0px 0px;
+        }        
+        
+        .boost {
+            background: url("images/boost.png") no-repeat 0px 0px;
+        }
+        
+        .advantage {
+            background: url("images/advantage.png") no-repeat 0px 0px;
+        }        
+        
+        .triumph {
+            background: url("images/triumph.png") no-repeat 0px 0px;
+        }
+        
+        .success {
+            background: url("images/success.png") no-repeat 0px 0px;
+        }
+        
+        .despair {
+            background: url("images/despair.png") no-repeat 0px 0px;
+        }
+        
+        .failure {
+            background: url("images/failure.png") no-repeat 0px 0px;
+        }
+        
+        .threat {
+            background: url("images/threat.png") no-repeat 0px 0px;
+        }           
+        
+        .die-icon {    
+            display: inline-block;
+            content: '';
+            width: 18px;
+            height: 18px;
+            background-size: 18px;
+        }
+        
     </style>
     
 </head>
@@ -118,8 +177,90 @@
             
             <div class="ui cards one column grid">
             
-                <div class="column">
+                <div class="column" id="cards">
 
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <i class="remove icon link right floated"></i>
+                            <div class="header">Initiative Check</div>
+                             <div class="meta">
+                                <a class="group">Success</a>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="description">
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon boost"></i>
+                                <i class="die-icon boost"></i>
+                                <i class="die-icon difficulty"></i>
+                                <i class="die-icon difficulty"></i>
+                                <i class="die-icon setback"></i>
+                            </div>
+                            <div class="description">
+                                <i class="die-icon success"></i>
+                                <i class="die-icon success"></i>
+                                <i class="die-icon success"></i>
+                                <i class="die-icon failure"></i>
+                                <i class="die-icon failure"></i>
+                                <i class="die-icon advantage"></i>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                              <a class="right floated created">
+                                8:35 PM
+                              </a>
+                              <a class="friends">
+                                <i class="user icon"></i>
+                                Mike C
+                              </a>
+                        </div>
+                    </div>                    
+                   
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <i class="remove icon link right floated"></i>
+                            <div class="header">Initiative Check</div>
+                             <div class="meta">
+                                <a class="group">Success</a>
+                            </div>
+                            <div class="description">
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon ability"></i>
+                                <i class="die-icon boost"></i>
+                                <i class="die-icon boost"></i>
+                                <i class="die-icon difficulty"></i>
+                                <i class="die-icon difficulty"></i>
+                                <i class="die-icon setback"></i>
+                            </div>
+                            <div class="description">
+                                <i class="die-icon success"></i>
+                                <i class="die-icon success"></i>
+                                <i class="die-icon success"></i>
+                                <i class="die-icon failure"></i>
+                                <i class="die-icon failure"></i>
+                                <i class="die-icon advantage"></i>
+                            </div>
+                            <div class="description">
+                                <i class="die-icon success"></i>
+                                <i class="die-icon advantage"></i>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                              <a class="right floated created">
+                                8:35 PM
+                              </a>
+                              <a class="friends">
+                                <i class="user icon"></i>
+                                Mike C
+                              </a>
+                        </div>
+                    </div>                    
+                    
+                    <!--
                     <div class="ui fluid card">
                         <div class="content">
                             <div class="header"><i class="user icon"></i>Ryan S<i class="remove icon link right floated"></i></div>
@@ -139,28 +280,6 @@
                             </a>
                         </div>
                     </div>                
-
-                    <div class="ui fluid card">
-                        <div class="content">
-                            <div class="header">Initiative Check<i class="remove icon link right floated"></i></div>
-                            <div class="description">
-                                Raw Results
-                            </div>
-                           <div class="description">
-                                Calculated Results
-                            </div>
-                        </div>
-                        <div class="extra content">
-                              <a class="right floated created">
-                                8:35 PM
-                              </a>
-                              <a class="friends">
-                                <i class="user icon"></i>
-                                Mike C
-                              </a>
-                        </div>
-                    </div>                     
-                    
                     <div class="ui fluid card">
                         <div class="content">
                             <div class="header"><i class="user icon"></i>Ryan S<i class="remove icon link right floated"></i></div>
@@ -223,7 +342,7 @@
                             </a>
                         </div>
                     </div> 
-
+                    -->
 
                 </div>
 
