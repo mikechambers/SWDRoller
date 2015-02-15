@@ -132,18 +132,46 @@
         return resultSet[Math.floor(Math.random() * resultSet.length)];
     };
     
+    var _poolDiceClickHandler;
     var pool = [];
+    var renderPool = function () {
     
-    $(document).ready(function () {
-        $(".menu .item").tab();
-    });
+        $("#dice-pool").empty();
+        
+        
+        if (pool.length === 0) {
+            $("#roll-button, #clear-pool-icon").addClass("disabled");
+            
+            return;
+        }
+        
+        $("#roll-button, #clear-pool-icon").removeClass("disabled");
+        
+        var tmp = "";
+        
+        var dieType;
+        var i;
+        for (i = 0; i < pool.length; i++) {
+            
+            dieType = pool[i];
+            tmp += '<img class="mini-dice-image clickable pool-dice" data-type=' + dieType + ' height="18" width="18" src="images/' + Dice[dieType].name + '.png" />';
+            
+        }
+        
+        $("#dice-pool").append(tmp);
+        $(".pool-dice").on("click", _poolDiceClickHandler);
+    };
     
-    var renderPool;
-    var _poolDiceClickHandler = function (event) {
+    var addToPool = function (item) {
+        pool.push(item);
+        pool.sort();
         
-        console.log("click");
-        var type = parseInt(event.target.dataset.type, 10);
+        renderPool();
         
+        console.log(pool);
+    };
+    
+    var removeFromPool = function (type) {
         var found = false;
         var i;
         for (i = 0; i < pool.length; i++) {
@@ -161,25 +189,16 @@
         }
     };
     
-    renderPool = function () {
+    $(document).ready(function () {
+        $(".menu .item").tab();
+    });
     
-        $("#dice-pool").empty();
+    
+    _poolDiceClickHandler = function (event) {
+        var type = parseInt(event.target.dataset.type, 10);
         
-        var tmp = "";
-        
-        var dieType;
-        var i;
-        for (i = 0; i < pool.length; i++) {
-            
-            dieType = pool[i];
-            tmp += '<img class="mini-dice-image clickable pool-dice" data-type=' + dieType + ' height="18" width="18" src="images/' + Dice[dieType].name + '.png" />';
-            
-        }
-        
-        $("#dice-pool").append(tmp);
-        $(".pool-dice").on("click", _poolDiceClickHandler);
+        removeFromPool(type);
     };
-    
     
     var clearPool = function () {
         pool.length = 0;
@@ -196,11 +215,10 @@
         
         //todo: check valid
         
-        pool.push(type);
-        pool.sort();
+        //pool.push(type);
+        //pool.sort();
         
-        renderPool();
-        console.log(pool);
+        addToPool(type);
     });
     
     $("#roll-button").on("click", function (event) {
