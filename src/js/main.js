@@ -30,6 +30,7 @@
     //Ability
     Dice[DIE_TYPE.ABILITY] =  {
         name: "ability",
+        id:DIE_TYPE.ABILITY,
         img_path: "images/ability.png",
         resultSet: [
             [RESULT.SUCCESS],
@@ -46,6 +47,7 @@
     //Proficiency
     Dice[DIE_TYPE.PROFICIENCY] = {
         name: "proficiency",
+        id:DIE_TYPE.PROFICIENCY,
         img_path: "images/proficiency.png",
         resultSet: [
             [RESULT.ADVANTAGE, RESULT.ADVANTAGE],
@@ -66,6 +68,7 @@
     //Boost
     Dice[DIE_TYPE.BOOST] = {
         name: "boost",
+        id: DIE_TYPE.BOOST,
         img_path: "images/boost.png",
         resultSet: [
             [RESULT.ADVANTAGE],
@@ -80,6 +83,7 @@
     //Difficulty
     Dice[DIE_TYPE.DIFFICULTY] = {
         name: "difficulty",
+        id: DIE_TYPE.DIFFICULTY,
         img_path: "images/difficulty.png",
         resultSet: [
             [RESULT.THREAT],
@@ -96,6 +100,7 @@
     //Challenge
     Dice[DIE_TYPE.CHALLENGE] = {
         name: "challenge",
+        id: DIE_TYPE.CHALLENGE,
         img_path: "images/challenge.png",
         resultSet: [
             [RESULT.THREAT, RESULT.THREAT],
@@ -116,6 +121,7 @@
     //Challenge
     Dice[DIE_TYPE.SETBACK] = {
         name: "setback",
+        id: DIE_TYPE.SETBACK,
         img_path: "images/setback.png",
         resultSet: [
             [RESULT.FAILURE],
@@ -129,6 +135,7 @@
     /******** End Die Definitions ***********/
     
     var miniDiceTemplate;
+    var dieRollTemplate;
     
     var _roll = function (resultSet) {
         return resultSet[Math.floor(Math.random() * resultSet.length)];
@@ -203,6 +210,9 @@
         
         var source = $("#mini-dice-template").html();
         miniDiceTemplate = Handlebars.compile(source);
+        
+        var dieRollSource = $("#die-roll-card-template").html();
+        dieRollTemplate = Handlebars.compile(dieRollSource);
     });
     
     
@@ -225,18 +235,44 @@
     
     $("#roll-button").on("click", function (event) {
         
-        var out = [];
+        var rawResults = [];
+        
+        var dieTypes = [];
+        
+        var die;
         var i, k;
         for (i = 0; i < pool.length; i++) {
-            var resultSet = Dice[pool[i]].resultSet;
+            
+            die = Dice[pool[i]];
+            
+            var resultSet = die.resultSet;
+            
+            dieTypes.push(die.name);
+            
             var res = _roll(resultSet);
             
             for (k = 0; k < res.length; k++) {
-                out.push(res[k]);
+                rawResults.push(res[k]);
             }
         }
         
-        console.log(out);
+        console.log(rawResults);
+        
+        
+        var context = {
+            label:"Initiative Check",
+            playerName:"mesh",
+            rollTime:"8:35 PM",
+            result:"Success!",
+            id: (new Date().getTime()),
+            dicePool: dieTypes,
+            rawResults:rawResults,
+            combinedResults:[]
+        };
+        
+        var html = dieRollTemplate(context);
+        $("#cards").prepend(html);
+        
         
         $("#label-input").val("");
         clearPool();
