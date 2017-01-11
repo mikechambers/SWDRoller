@@ -2,7 +2,7 @@ Google Hangout extension for rolling dice for the Star Wars Age of Rebellion RPG
 
 Project is not affiliated nor endorsed by Fantasy Flight Games.
 
-Create by Mike Chambers
+Created by Mike Chambers
 mikechambers@gmail.com
 
 Released under an MIT License
